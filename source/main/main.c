@@ -3,6 +3,7 @@
  ******************************************************************************/
 
 #include "adc.h"
+#include "config.h"
 #include "led.h"
 #include "power-latch.h"
 
@@ -25,6 +26,9 @@ void app_main(void)
 
     /* Initialize LED handler. */
     (void) led_init();
+
+    /* Initialize configuration handler. */
+    (void) config_init();
 
     /* Initialize ADC. */
     (void) adc_init();
