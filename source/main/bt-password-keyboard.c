@@ -3,6 +3,7 @@
  ******************************************************************************/
 
 #include "adc.h"
+#include "led.h"
 #include "power-latch.h"
 
 #include <esp_log.h>
@@ -21,6 +22,9 @@ void app_main(void)
 {
     /* Enable the power regulator. */
     (void) power_latch_init();
+
+    /* Initialize LED handler. */
+    (void) led_init();
 
     /* Initialize ADC. */
     (void) adc_init();
