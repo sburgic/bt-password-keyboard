@@ -1,5 +1,7 @@
 #include "error.h"
 
+#include "led.h"
+
 #include <esp_log.h>
 
 #include <freertos/FreeRTOS.h>
@@ -11,6 +13,7 @@
 
 void error_critical_handler(char* tag)
 {
+    led_set(LED_FLAG_ERROR, LED_ERROR_ON);
     ESP_LOGE(tag, "Critical error occurred!");
 
     /* Wait for 1 minute and restart the CPU. */
