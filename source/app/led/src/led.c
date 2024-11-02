@@ -1,6 +1,9 @@
 #include "led.h"
 
+#include "error.h"
+
 #include <driver/gpio.h>
+#include <esp_log.h>
 
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -104,7 +107,11 @@ esp_err_t led_init(void)
 
         if (NULL == led_task_hdl)
         {
-            ret = ESP_FAIL;
+            error_critical_handler(LED_TAG);
+        }
+        else
+        {
+            ESP_LOGI(LED_TAG, "Initialization done.");
         }
     }
 

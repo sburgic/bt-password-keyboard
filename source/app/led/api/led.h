@@ -4,8 +4,10 @@
 #include <esp_err.h>
 
 /*******************************************************************************
- * Definitions and types
+ * Definitions
  ******************************************************************************/
+
+#define LED_TAG "LED"
 
 #define LED_GREEN_GPIO_PIN GPIO_NUM_20
 #define LED_RED_GPIO_PIN   GPIO_NUM_21

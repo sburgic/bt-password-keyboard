@@ -1,6 +1,9 @@
 #include "power-latch.h"
 
+#include "error.h"
+
 #include <driver/gpio.h>
+#include <esp_log.h>
 
 /*******************************************************************************
  * Functions
@@ -22,6 +25,15 @@ esp_err_t power_latch_init(void)
     if (ESP_OK == ret)
     {
         ret = gpio_set_level(POWER_LATCH_GPIO_PIN, 1);
+    }
+
+    if (ESP_OK == ret)
+    {
+        ESP_LOGI(POWER_LATCH_TAG, "Power latch initialized.");
+    }
+    else
+    {
+        error_critical_handler(POWER_LATCH_TAG);
     }
 
     return ret;

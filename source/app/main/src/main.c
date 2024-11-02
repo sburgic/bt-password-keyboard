@@ -4,6 +4,7 @@
 
 #include "adc.h"
 #include "config.h"
+#include "error.h"
 #include "led.h"
 #include "power-latch.h"
 
@@ -21,15 +22,31 @@
 
 void app_main(void)
 {
+    esp_err_t ret;
+
     /* Enable the power regulator. */
-    (void) power_latch_init();
+    ret = power_latch_init();
 
-    /* Initialize LED handler. */
-    (void) led_init();
+    if (ESP_OK == ret)
+    {
+        /* Initialize LED handler. */
+        ret = led_init();
+    }
 
-    /* Initialize configuration handler. */
-    (void) config_init();
+    if (ESP_OK == ret)
+    {
+        /* Initialize configuration handler. */
+        ret = config_init();
+    }
 
-    /* Initialize ADC handler. */
-    (void) adc_init();
+    if (ESP_OK == ret)
+    {
+        /* Initialize ADC handler. */
+        ret = adc_init();
+    }
+
+    if (ESP_OK == ret)
+    {
+        ESP_LOGI(MAIN_TAG, "Initialization successful.");
+    }
 }
