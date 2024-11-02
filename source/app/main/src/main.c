@@ -30,6 +30,6 @@ void app_main(void)
     /* Initialize configuration handler. */
     (void) config_init();
 
-    /* Initialize ADC. */
+    /* Initialize ADC handler. */
     (void) adc_init();
 }
